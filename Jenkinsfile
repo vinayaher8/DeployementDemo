@@ -28,7 +28,7 @@ node {
             if (isUnix()) {
                 rc = sh returnStatus: true, script: "sfdx force:auth:jwt:grant --clientid 3MVG9fe4g9fhX0E5nE8CDuBIKALv9M8ZFWxS4hqVRRicDiIQFUF1frNNszYW5fug4TXD3hxOT2IwKYVJhb40_ --jwtkeyfile \"${jwt_key_file}\" --username vinay.aher@cloudsynapps.com --instanceurl https://login.salesforce.com --setdefaultdevhubusername"
             }else{
-                 rc = bat returnStatus: true, script: ""sfdx force:auth:jwt:grant --clientid 3MVG9fe4g9fhX0E5nE8CDuBIKALv9M8ZFWxS4hqVRRicDiIQFUF1frNNszYW5fug4TXD3hxOT2IwKYVJhb40_ --jwtkeyfile \"${jwt_key_file}\" --username vinay.aher@cloudsynapps.com --instanceurl https://login.salesforce.com --setdefaultdevhubusername""
+                 rc = bat returnStatus: true, script: "sfdx force:auth:jwt:grant --clientid 3MVG9fe4g9fhX0E5nE8CDuBIKALv9M8ZFWxS4hqVRRicDiIQFUF1frNNszYW5fug4TXD3hxOT2IwKYVJhb40_ --jwtkeyfile \"${jwt_key_file}\" --username vinay.aher@cloudsynapps.com --instanceurl https://login.salesforce.com --setdefaultdevhubusername"
             }
             if (rc != 0) { error 'hub org authorization failed' }
 
