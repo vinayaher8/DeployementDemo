@@ -112,7 +112,7 @@ node {
             }
         }
     }
-}
+
 
 def command(script) {
     if (isUnix()) {
