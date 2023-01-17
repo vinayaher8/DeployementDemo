@@ -1,10 +1,11 @@
+
 #!groovy
 
 import groovy.json.JsonSlurperClassic
 
 node {
 
-    def SF_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
+     def SF_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
     def SF_USERNAME=env.HUB_ORG_DH
     def SERVER_KEY_CREDENTALS_ID=env.JWT_FILE
     def TEST_LEVEL='RunLocalTests'
@@ -12,19 +13,11 @@ node {
     def PACKAGE_VERSION
     def SF_INSTANCE_URL = env.SFDC_HOST_DH ?: "https://login.salesforce.com"
 
-<<<<<<< HEAD
-=======
-    def HUB_ORG=env.HUB_ORG_DH
-    def SFDC_HOST = env.SFDC_HOST_DH
-    def JWT_KEY_CRED_ID = env.JWT_FILE
-    def CONNECTED_APP_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
-
     println 'KEY IS' 
-    println JWT_KEY_CRED_ID
-    println HUB_ORG
-    println SFDC_HOST
-    println CONNECTED_APP_CONSUMER_KEY
->>>>>>> 147e7c8d8ff92a10cb5e9de9b94688ca3110bc05
+    println SF_USERNAME
+    println SERVER_KEY_CREDENTALS_ID
+    println SF_CONSUMER_KEY
+
     def toolbelt = tool 'toolbelt'
 
 
@@ -36,17 +29,6 @@ node {
         checkout scm
     }
 
-<<<<<<< HEAD
-=======
-    withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
-        stage('Deploye Code') {
-            if (isUnix()) {
-                rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${JWT_KEY_CRED_ID} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
-            }else{
-                 rc = bat returnStatus: true, script: " ${toolbelt} force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${JWT_KEY_CRED_ID} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
-            }
-            if (rc != 0) { error 'hub org authorization failed' }
->>>>>>> 147e7c8d8ff92a10cb5e9de9b94688ca3110bc05
 
     // -------------------------------------------------------------------------
     // Run all the enclosed stages with access to the Salesforce
@@ -62,7 +44,7 @@ node {
             // -------------------------------------------------------------------------
 
             stage('Authorize DevHub') {
-                rc = command "${toolbelt}/sfdx auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --setalias HubOrg"
+                rc = command "${toolbelt}/sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --setalias HubOrg"
                 if (rc != 0) {
                     error 'Salesforce dev hub org authorization failed.'
                 }
