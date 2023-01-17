@@ -12,6 +12,19 @@ node {
     def PACKAGE_VERSION
     def SF_INSTANCE_URL = env.SFDC_HOST_DH ?: "https://login.salesforce.com"
 
+<<<<<<< HEAD
+=======
+    def HUB_ORG=env.HUB_ORG_DH
+    def SFDC_HOST = env.SFDC_HOST_DH
+    def JWT_KEY_CRED_ID = env.JWT_FILE
+    def CONNECTED_APP_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
+
+    println 'KEY IS' 
+    println JWT_KEY_CRED_ID
+    println HUB_ORG
+    println SFDC_HOST
+    println CONNECTED_APP_CONSUMER_KEY
+>>>>>>> 147e7c8d8ff92a10cb5e9de9b94688ca3110bc05
     def toolbelt = tool 'toolbelt'
 
 
@@ -23,6 +36,17 @@ node {
         checkout scm
     }
 
+<<<<<<< HEAD
+=======
+    withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
+        stage('Deploye Code') {
+            if (isUnix()) {
+                rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${JWT_KEY_CRED_ID} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+            }else{
+                 rc = bat returnStatus: true, script: " ${toolbelt} force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${JWT_KEY_CRED_ID} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+            }
+            if (rc != 0) { error 'hub org authorization failed' }
+>>>>>>> 147e7c8d8ff92a10cb5e9de9b94688ca3110bc05
 
     // -------------------------------------------------------------------------
     // Run all the enclosed stages with access to the Salesforce
