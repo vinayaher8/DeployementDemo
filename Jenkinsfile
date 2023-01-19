@@ -18,11 +18,11 @@ node {
     println CONNECTED_APP_CONSUMER_KEY
     def toolbelt = env.toolbelt
 	println toolbelt
-stage('Install sgd-git-delta plugin') {
-             
-                script {
-                    bat 'echo y | sfdx plugins:install sfdx-git-delta'
-                }
+stage('generate xml file') {
+             rc=sh returnStatus:true,
+                script :
+                     "${toolbelt} sfdx sgd:source:delta --to 'HEAD' --from 'HEAD~1' --output manifest/package/package.xml"
+            
             
         }
     stage('checkout source') {
@@ -45,7 +45,7 @@ stage('Install sgd-git-delta plugin') {
 			if (isUnix()) {
 				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
 			}else{
-			   rmsg = bat returnStdout: true, script: "${toolbelt} force:source:deploy -x manifest/package.xml -u ${HUB_ORG}"
+			   rmsg = bat returnStdout: true, script: "${toolbelt} force:source:deploy -x package/package.xml --postdestructivechanges destructiveChanges/destructiveChanges.xml -u ${HUB_ORG}"
 			}
 			  
             printf rmsg
