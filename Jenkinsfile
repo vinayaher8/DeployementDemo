@@ -19,7 +19,7 @@ node {
     def toolbelt = env.toolbelt
 	println toolbelt
   stage('generate xml file') {
-                 rc=   command " ${toolbelt}  sgd:source:delta --to 'HEAD' --from 'HEAD~1' --output manifest/."
+                 rc=   command " ${toolbelt}  sgd:source:delta --to "HEAD" --from "HEAD~1" --output manifest/."
             
             println rc
         }
