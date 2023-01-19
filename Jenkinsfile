@@ -18,8 +18,8 @@ node {
     println CONNECTED_APP_CONSUMER_KEY
     def toolbelt = env.toolbelt
 	println toolbelt
-stage('generate xml file') {
-             rc=sh returnStatus:true,
+  stage('generate xml file') {
+             rs=sh returnStatus:true,
                 script :
                      "${toolbelt} sfdx sgd:source:delta --to "HEAD" --from "HEAD~1" --output manifest/package/package.xml"
             
