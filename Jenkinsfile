@@ -21,7 +21,7 @@ node {
   stage('generate xml file') {
                  rc=   command " ${toolbelt} sfdx sgd:source:delta --to 'HEAD' --from 'HEAD~1' --output manifest/package/package.xml"
             
-            
+            println rc
         }
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
