@@ -19,7 +19,7 @@ node {
     def toolbelt = env.toolbelt
 	println toolbelt
   stage('generate xml file') {
-                 rc=   command " ${toolbelt} sfdx sgd:source:delta --to "HEAD" --from "HEAD~1" --output manifest/package/package.xml"
+                 rc=   command " ${toolbelt} sfdx sgd:source:delta --to 'HEAD' --from 'HEAD~1' --output manifest/package/package.xml"
             
             
         }
