@@ -21,7 +21,7 @@ node {
 stage('generate xml file') {
              rc=sh returnStatus:true,
                 script :
-                     "${toolbelt} sfdx sgd:source:delta --to 'HEAD' --from 'HEAD~1' --output manifest/package/package.xml"
+                     "${toolbelt} sfdx sgd:source:delta --to "HEAD" --from "HEAD~1" --output manifest/package/package.xml"
             
             
         }
