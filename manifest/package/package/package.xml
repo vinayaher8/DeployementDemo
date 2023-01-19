@@ -8,5 +8,5 @@
         <members>DeployDemo</members>
         <name>AuraDefinitionBundle</name>
     </types>
-    <version>55.0</version>
+    <version>50.0</version>
 </Package>
