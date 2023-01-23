@@ -19,8 +19,8 @@ node {
     def toolbelt = env.toolbelt
 	println toolbelt
   stage('generate xml file') {
-                bat "${toolbelt} sgd:source:delta --to HEAD --from HEAD~1 --output." 
-             }
+             result=   bat "${toolbelt} sgd:source:delta --to HEAD --from HEAD~1 --output." 
+             println result}
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
         checkout scm
