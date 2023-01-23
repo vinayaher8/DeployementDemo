@@ -19,17 +19,17 @@ node {
     def toolbelt = env.toolbelt
 	println toolbelt
 	stage('Install sgd-git-delta plugin') {
-            {
+            
                 script {
 			bat 'echo y | ${toolbelt} plugins:install sfdx-git-delta'
                 }
             }
-        }
+        
   stage('generate xml file') {
-	  {
-                script {
+	  
+             script {
 			bat 'echo y | ${toolbelt} sgd:source:delta --to 'HEAD' --from 'HEAD~1' --output manifest/.'
-                }
+                
             }
             
         }
