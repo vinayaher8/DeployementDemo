@@ -20,7 +20,7 @@ node {
 	println toolbelt
     
    stage('install'){
-			     bat "${toolbelt} force:package:install --package mypackage@0.0.1-delta -u vinay.aher@cloudsynapps.com "
+			     bat "${toolbelt} plugins:install sfdx-git-delta  --wait 10 --noprompt -u vinay.aher@cloudsynappps.com"
             }
         
    
