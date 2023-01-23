@@ -20,7 +20,7 @@ node {
 	println toolbelt
     
    stage('install'){
-			     bat "${toolbelt} force:package:install --package mypackage@0.0.1-delta --wait 10 --noprompt defaultusername=VINAY"
+			     bat "${toolbelt} force:package:install --package mypackage@0.0.1-delta "
             }
         
    
