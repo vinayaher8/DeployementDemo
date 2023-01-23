@@ -20,7 +20,7 @@ node {
 	println toolbelt
     println Head~1
   stage('generate xml file') {
-			   rmsg = bat returnStdout: true, script: "${toolbelt} sgd:source:delta --to "HEAD" --from "HEAD~1" --output  ./manifest ".""
+			   rmsg = bat returnStdout: true, script: "${toolbelt} sgd:source:delta --to "HEAD" --from "origin/master" --output  ./manifest ".""
              println result}
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
