@@ -21,8 +21,9 @@ node {
     
         stage('Install package') {
                 script {
-                    def confirm = input message: 'Are you sure you want to proceed? (yes/no)', ok: 'Proceed', parameters: [string(defaultValue: 'yes', description: 'yes/no', name: 'confirm')]
-                    if (confirm == "yes") {
+                    def confirm = input message: 'This plugin is not digitally signed and its authenticity cannot be verified. 
+Continue installation? (y/N)', ok: 'Proceed', parameters: [string(defaultValue: 'y', description: 'yes/no', name: 'confirm')]
+                    if (confirm == "y") {
 			     bat  "${toolbelt} plugins:install sfdx-git-delta "
                     } else {
                         echo "Aborting..."
