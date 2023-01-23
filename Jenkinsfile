@@ -19,6 +19,20 @@ node {
     def toolbelt = env.toolbelt
 	println toolbelt
     
+ stages {
+        stage('Install package') {
+            steps {
+                script {
+                    def confirm = input message: 'Are you sure you want to proceed? (yes/no)', ok: 'Proceed', parameters: [string(defaultValue: 'yes', description: 'yes/no', name: 'confirm')]
+                    if (confirm == "yes") {
+			     bat  "${toolbelt} plugins:install sfdx-git-delta "
+                    } else {
+                        echo "Aborting..."
+                    }
+                }
+            }
+        }
+    }
         
    stage('install'){
 			     bat  "${toolbelt} plugins:install sfdx-git-delta "
