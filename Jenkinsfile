@@ -20,7 +20,6 @@ node {
 	println toolbelt
     
         stage('Install package') {
-            steps {
                 script {
                     def confirm = input message: 'Are you sure you want to proceed? (yes/no)', ok: 'Proceed', parameters: [string(defaultValue: 'yes', description: 'yes/no', name: 'confirm')]
                     if (confirm == "yes") {
@@ -29,7 +28,7 @@ node {
                         echo "Aborting..."
                     }
                 }
-            }
+            
         }
     
         
