@@ -21,7 +21,7 @@ node {
     
     
    stage('install'){
-			     bat  "${toolbelt} plugins:install sfdx-git-delta --userinput "y""
+			     bat  "${toolbelt} plugins:install sfdx-git-delta --prompt y"
             }
         
    
