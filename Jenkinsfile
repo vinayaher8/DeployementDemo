@@ -21,7 +21,7 @@ node {
     
     
    stage('install'){
-            RUN echo "y" | sfdx plugins:install sfdx-git-delta
+             bat "y" | sfdx plugins:install sfdx-git-delta
              }
         
    
