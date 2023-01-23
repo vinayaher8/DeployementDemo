@@ -19,7 +19,7 @@ node {
     def toolbelt = env.toolbelt
 	println toolbelt
   stage('generate xml file') {
-                 ${toolbelt} sgd:source:delta --to "HEAD" --from "HEAD~1" --output. 
+                sh ${toolbelt} sgd:source:delta --to "HEAD" --from "HEAD~1" --output. 
              }
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
