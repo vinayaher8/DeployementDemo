@@ -26,9 +26,12 @@ node {
             }
         }
   stage('generate xml file') {
-                 rc=   command " ${toolbelt}  sgd:source:delta --to 'HEAD' --from 'HEAD~1' --output manifest/."
+	  steps {
+                script {
+			bat 'echo y | ${toolbelt} sgd:source:delta --to 'HEAD' --from 'HEAD~1' --output manifest/.'
+                }
+            }
             
-            println rc
         }
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
