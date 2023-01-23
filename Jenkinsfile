@@ -18,10 +18,20 @@ node {
     println CONNECTED_APP_CONSUMER_KEY
     def toolbelt = env.toolbelt
 	println toolbelt
+	stage('Install sgd-git-delta plugin') {
+            steps {
+                script {
+			bat 'echo y | ${toolbelt} plugins:install sfdx-git-delta'
+                }
+            }
+        }
   stage('generate xml file') {
-                 rc=   command " ${toolbelt}  sgd:source:delta --to 'HEAD' --from 'HEAD~1' --output manifest/."
+	  steps {
+                script {
+			bat 'echo y | ${toolbelt} sgd:source:delta --to 'HEAD' --from 'HEAD~1' --output manifest/.'
+                }
+            }
             
-            println rc
         }
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
