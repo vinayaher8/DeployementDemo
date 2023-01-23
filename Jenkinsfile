@@ -19,7 +19,7 @@ node {
     def toolbelt = env.toolbelt
 	println toolbelt
   stage('generate xml file') {
-			   rmsg = bat returnStdout: true, script: "${toolbelt} sgd:source:delta --to "HEAD" --from "origin/master" --output  ./manifest ".""
+			   rmsg = bat returnStdout: true, script: "${toolbelt} sfdx sgd:source:delta --to develop --from main  --output  ./manifest ".""
              println result}
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
