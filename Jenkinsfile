@@ -20,7 +20,7 @@ node {
 	println toolbelt
     
    stage('install'){
-			     sh 'sfdx force:package:install --package mypackage@0.0.1-delta --wait 10 --noprompt'
+			     bat 'sfdx force:package:install --package mypackage@0.0.1-delta --wait 10 --noprompt'
             }
         
    
