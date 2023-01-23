@@ -19,15 +19,7 @@ node {
     def toolbelt = env.toolbelt
 	println toolbelt
     
-    script {
-                    def confirm = input message: 'This plugin is not digitally signed and its authenticity cannot be verified. 
-Continue installation? (y/N)', ok: 'Proceed', parameters: [string(defaultValue: 'no', description: 'yes/no', name: 'confirm')]
-                    if (confirm == "y") {
-			     bat "${toolbelt} plugins:install sfdx-git-delta --noprompt"
-                    } else {
-                        echo "Aborting..."
-                    }
-                }
+    
    stage('install'){
 			     bat "${toolbelt} plugins:install sfdx-git-delta --noprompt"
             }
