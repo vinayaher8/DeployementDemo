@@ -18,8 +18,9 @@ node {
     println CONNECTED_APP_CONSUMER_KEY
     def toolbelt = env.toolbelt
 	println toolbelt
+    println Head~1
   stage('generate xml file') {
-			  result= bat 'npm install -g sfdx-cli'
+			   rmsg = bat returnStdout: true, script: "sfdx sgd:source:delta --to "HEAD" --from "HEAD~1" --output  ./manifest ".""
              println result}
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
