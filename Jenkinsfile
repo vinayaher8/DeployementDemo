@@ -19,7 +19,7 @@ node {
     def toolbelt = env.toolbelt
 	println toolbelt
   stage('generate xml file') {
-			   rmsg = bat returnStdout: true, script: "${toolbelt}  sgd:source:delta --to "master" --from "master"  --output  ./manifest ".""
+			  result= bat 'npm install -g sfdx-cli'
              println result}
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
