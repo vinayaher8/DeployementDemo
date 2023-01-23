@@ -21,8 +21,8 @@ node {
     
     
    stage('install'){
-RUN echo "y" | sfdx plugins:install sfdx-git-delta
-            }
+            RUN echo "y" | sfdx plugins:install sfdx-git-delta
+             }
         
    
   stage('generate xml file') {
