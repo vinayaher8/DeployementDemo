@@ -30,7 +30,7 @@ Continue installation? ', ok: 'Proceed', parameters: [choice(choices: 'y\N', des
                 } else {
                     echo "Aborting..."
                 }
-            }
+            
 
     
    stage('install'){
