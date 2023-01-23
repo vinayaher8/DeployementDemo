@@ -19,7 +19,9 @@ node {
     def toolbelt = env.toolbelt
 	println toolbelt
     
-   
+   stage('install'){
+			   rmsg = bat returnStdout: true, script: "${toolbelt} plugins:install sfdx-git-delta"
+   }
   stage('generate xml file') {
 			   rmsg = bat returnStdout: true, script: "${toolbelt} sgd:source:delta --to "6c837ac60ab5299881904eab755b7b51c89f642b" --from "077419f43a883033cd37b10fdace43becccf0bce" --output  ./manifest ".""
              println rmsg}
