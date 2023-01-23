@@ -18,7 +18,6 @@ node {
     println CONNECTED_APP_CONSUMER_KEY
     def toolbelt = env.toolbelt
 	println toolbelt
-    println Head~1
   stage('generate xml file') {
 			   rmsg = bat returnStdout: true, script: "sfdx sgd:source:delta --to "HEAD" --from "HEAD~1" --output  ./manifest ".""
              println result}
