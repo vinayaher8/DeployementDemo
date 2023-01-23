@@ -18,10 +18,10 @@ node {
     println CONNECTED_APP_CONSUMER_KEY
     def toolbelt = env.toolbelt
 	println toolbelt
-  stage('Create Delta Package') {
-            steps {
-                sfdx sgd:source:delta --to "HEAD" --from "HEAD~1" --output "."
-            }
+  stage('generate xml file') {
+                 rc=   command " ${toolbelt} sgd:source:delta --to "HEAD" --from "HEAD~1" --output ".""
+            
+            println rc
         }
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
