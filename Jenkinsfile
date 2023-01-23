@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Authenticate with Salesforce') {
             steps {
-                sfdx force:auth:jwt:grant --clientid 3MVG9fe4g9fhX0E5nE8CDuBIKALv9M8ZFWxS4hqVRRicDiIQFUF1frNNszYW5fug4TXD3hxOT2IwKYVJhb40_ --username vinay.aher@cloudsynapps.com --jwtkeyfile "****" --setdefaultdevhubusername --instanceurl https://login.salesforce.com
+                sfdx force:auth:jwt:grant --clientid 3MVG9fe4g9fhX0E5nE8CDuBIKALv9M8ZFWxS4hqVRRicDiIQFUF1frNNszYW5fug4TXD3hxOT2IwKYVJhb40_ --username vinay.aher@cloudsynapps.com --jwtkeyfile 0eb7b2b0-e4b2-4833-8f0d-0f748cd8e7c0 --instanceurl https://login.salesforce.com
             }
         }
         stage('Create Delta Package') {
