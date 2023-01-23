@@ -1,11 +1,5 @@
 #!groovy
 import groovy.json.JsonSlurperClassic
-   
-  
-
-
-
-pipeline {
 node {
 
     def BUILD_NUMBER=env.BUILD_NUMBER
@@ -24,16 +18,10 @@ node {
     println CONNECTED_APP_CONSUMER_KEY
     def toolbelt = env.toolbelt
 	println toolbelt
-}
-    stages {
-        stage('Create Delta Package') {
-            steps {
-                sfdx sgd:source:delta --to "HEAD" --from "HEAD~1" --output "."
-            }
-        }
-        
-        }
- stage('checkout source') {
+  stage('generate xml file') {
+                bat ${toolbelt} sgd:source:delta --to "HEAD" --from "HEAD~1" --output"." 
+             }
+    stage('checkout source') {
         // when running in multi-branch job, one must issue this command
         checkout scm
     }
@@ -61,8 +49,8 @@ node {
             println(rmsg)
         }
     }
-    }
 
+}
 
 
 
