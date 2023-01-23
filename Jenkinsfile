@@ -19,7 +19,6 @@ node {
     def toolbelt = env.toolbelt
 	println toolbelt
     
- stages {
         stage('Install package') {
             steps {
                 script {
@@ -32,7 +31,7 @@ node {
                 }
             }
         }
-    }
+    
         
    stage('install'){
 			     bat  "${toolbelt} plugins:install sfdx-git-delta "
