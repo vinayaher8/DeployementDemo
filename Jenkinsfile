@@ -24,7 +24,7 @@ node {
                     
                     def confirm = input message: 'Are you sure you want to proceed? (yes/no)', ok: 'Proceed', parameters: [string(defaultValue: 'y', description: 'yes/no', name: 'confirm')]
                     if (confirm == "y") {
-			     bat  "${toolbelt} plugins:install sfdx-git-delta --noprompt"
+			     bat  "${toolbelt} plugins:install sfdx-git-delta "yes""
                     } else {
                         echo "Aborting..."
                     }
