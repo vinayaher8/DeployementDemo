@@ -33,9 +33,9 @@ node {
         }
     
         
-   stage('install'){
-			     bat  "${toolbelt} plugins:install sfdx-git-delta "
-            }
+//    stage('install'){
+// 			     bat  "${toolbelt} plugins:install sfdx-git-delta "
+//             }
         
    
   stage('generate xml file') {
