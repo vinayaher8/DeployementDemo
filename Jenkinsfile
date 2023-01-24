@@ -19,18 +19,7 @@ node {
     def toolbelt = env.toolbelt
 	println toolbelt
     
-        stage('Install package') {
-                script {
-                    
-                    def confirm = input message: 'Are you sure you want to proceed? (yes/no)', ok: 'Proceed', parameters: [string(defaultValue: 'y', description: 'yes/no', name: 'confirm')]
-                    if (confirm == "y") {
-			     bat  "${toolbelt} plugins:install sfdx-git-delta "yes""
-                    } else {
-                        echo "Aborting..."
-                    }
-                }
-            
-        }
+      
     
         
 //    stage('install'){
@@ -38,13 +27,13 @@ node {
 //             }
         
    
-  stage('generate xml file') {
-			   rmsg = bat returnStdout: true, script: "${toolbelt} sgd:source:delta --to "6c837ac60ab5299881904eab755b7b51c89f642b" --from "077419f43a883033cd37b10fdace43becccf0bce" --output  ./manifest ".""
-             println rmsg}
-    stage('checkout source') {
-        // when running in multi-branch job, one must issue this command
-        checkout scm
-    }
+//   stage('generate xml file') {
+// 			   rmsg = bat returnStdout: true, script: "${toolbelt} sgd:source:delta --to "6c837ac60ab5299881904eab755b7b51c89f642b" --from "077419f43a883033cd37b10fdace43becccf0bce" --output  ./manifest ".""
+//              println rmsg}
+//     stage('checkout source') {
+//         // when running in multi-branch job, one must issue this command
+//         checkout scm
+//     }
 
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Deploye Code') {
@@ -61,7 +50,7 @@ node {
 			if (isUnix()) {
 				rmsg = sh returnStdout: true, script: "${toolbelt} force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
 			}else{
-			   rmsg = bat returnStdout: true, script: "${toolbelt}  force:source:deploy -x manifest/package/package.xml --postdestructivechanges manifest/destructiveChanges/destructiveChanges.xml -u ${HUB_ORG}"
+			   rmsg = bat returnStdout: true, script: "${toolbelt}  force:source:deploy -x manifest/package.xml  -u ${HUB_ORG}"
 			}
 			  
             printf rmsg
