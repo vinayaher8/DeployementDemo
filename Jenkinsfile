@@ -30,10 +30,10 @@ node {
 //   stage('generate xml file') {
 // 			   rmsg = bat returnStdout: true, script: "${toolbelt} sgd:source:delta --to "6c837ac60ab5299881904eab755b7b51c89f642b" --from "077419f43a883033cd37b10fdace43becccf0bce" --output  ./manifest ".""
 //              println rmsg}
-//     stage('checkout source') {
+     stage('checkout source') {
 //         // when running in multi-branch job, one must issue this command
-//         checkout scm
-//     }
+         checkout scm
+     }
 
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Deploye Code') {
