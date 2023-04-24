@@ -37,6 +37,7 @@ node {
          checkout scm
 	     bat "${toolbelt}/sfdx -v"
 	     bat "npm -v"
+	     bat "node -v"
      }
 
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
@@ -52,9 +53,9 @@ node {
 			
 			// need to pull out assigned username  force:source:deploy -x path/to/package.xml
 			if (isUnix()) {
-				rmsg = sh returnStdout: true, script: "${toolbelt} force:source:deploy --checkonly -d manifest/. -u ${HUB_ORG}"
+				//rmsg = sh returnStdout: true, script: "${toolbelt} force:source:deploy --checkonly -d manifest/. -u ${HUB_ORG}"
 			}else{
-			   rmsg = bat returnStdout: true, script: "${toolbelt}  force:source:deploy --checkonly -x manifest/package.xml  -u ${HUB_ORG}"
+			   //rmsg = bat returnStdout: true, script: "${toolbelt}  force:source:deploy --checkonly -x manifest/package.xml  -u ${HUB_ORG}"
 			}
 			  
             printf rmsg
